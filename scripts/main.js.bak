@@ -1,0 +1,161 @@
+import { menu } from "./menuPrincipal.js"
+import { foods } from "./foods.js"
+
+const body = document.querySelector("body")
+
+function main() {
+  createMainMenu()
+}
+
+function createMainMenu() {
+  const keys = Object.keys(menu)
+  keys.forEach(key => {
+    const div = document.createElement("div")
+    div.classList.add("btn")
+    div.style.backgroundImage = `url(${menu[key].img})`
+
+    const title = document.createElement("p")
+    title.classList.add("btnTitle")
+    title.innerHTML = key
+    div.appendChild(title)
+    body.appendChild(div)
+    div.addEventListener("click", () => {
+      crearPaginaDeProducto(menu[key].id, key)
+    })
+  })
+}
+
+function crearPaginaDeProducto(foodId, menuKey) {
+  //Agregar T
+  body.innerHTML = `<h1 class="menu-food">${menuKey}</h1>`
+
+  foods.forEach(food => {
+    if (foodId !== food.id) return
+    //imagen
+    const img = document.createElement("img")
+    img.src = food.img
+    img.classList.add("food-image")
+    body.appendChild(img)
+    //sub-titulos
+    const foodKeys = Object.keys(food)
+    foodKeys.forEach(key => {
+      if (key.includes("sub-titulo")) {
+        const sub = document.createElement("h2")
+        sub.innerHTML = food[key]
+        console.log(food.key)
+        sub.classList.add("sub-titulo")
+        body.appendChild(sub)
+      }
+    })
+    //descripcion
+    food.desc.forEach(p => {
+      const paragraph = document.createElement("p")
+      paragraph.innerHTML = p
+      paragraph.classList.add("description")
+      body.appendChild(paragraph)
+    })
+    //precio
+    const precio = document.createElement("p")
+    precio.innerHTML = `$${food.precio}`
+    precio.classList.add("precio")
+    body.appendChild(precio)
+    //promo
+    const promo = document.createElement("p")
+    promo.innerHTML = `2 x ${food.promo}`
+    promo.classList.add("promo")
+    body.appendChild(promo)
+    //total y contador de cantidad
+    const quantityMotherDiv = document.createElement("div")
+    quantityMotherDiv.classList.add("quantity-mother-div")
+
+    const totalPriceContainer = document.createElement("div")
+    totalPriceContainer.classList.add("total-price-container")
+    const totalTitle = document.createElement("p")
+    totalTitle.classList.add("total-title")
+    totalTitle.innerHTML = "TOTAL"
+    const totalPrice = document.createElement("div")
+    totalPrice.classList.add("total-price")
+    totalPrice.innerHTML = "$ 0"
+
+    const plusMinusDiv = document.createElement("div")
+    plusMinusDiv.classList.add("plus-minus")
+    const minus = document.createElement("div")
+    minus.classList.add("minus")
+    minus.innerHTML = "-"
+    const ammount = document.createElement("input")
+    ammount.classList.add("ammount")
+    ammount.readOnly = true
+    ammount.value = 0
+    const plus = document.createElement("div")
+    plus.classList.add("plus")
+    plus.innerHTML = "+"
+
+    //append
+    totalPriceContainer.append(totalTitle, totalPrice)
+    plusMinusDiv.append(minus, ammount, plus)
+    quantityMotherDiv.append(totalPriceContainer, plusMinusDiv)
+    body.appendChild(quantityMotherDiv)
+    //eventos
+    plus.addEventListener("click", () => {
+      if (ammount.value > 89) return
+      ammount.value++
+      calculateTotalPrice(ammount, totalPrice, food)
+    })
+    minus.addEventListener("click", () => {
+      if (ammount.value < 1) return
+      ammount.value--
+      calculateTotalPrice(ammount, totalPrice, food)
+    })
+
+    //boton de agregar al canasto
+    const cartBtn = document.createElement("button")
+    cartBtn.innerHTML = "Agregar al pedido"
+    cartBtn.classList.add("cart-btn")
+    body.appendChild(cartBtn)
+
+    // Dia de pedido
+    const diaDePedidoTexto = document.createElement("p")
+    diaDePedidoTexto.classList.add("dia-de-pedido")
+    if (food.dia != "viernes" && food.dia != "sabado") {
+      diaDePedidoTexto.innerText = `Se anotará su pedido para el proximo ${food.dia}`
+    } else {
+      const fechaDePedido = getDateOfOrder(food)
+      diaDePedidoTexto.innerText = `Se tomará su pedido para el dia ${food.dia} ${fechaDePedido}`
+    }
+    body.appendChild(diaDePedidoTexto)
+  })
+}
+
+function calculateTotalPrice(ammount, totalPrice, food) {
+  if (ammount.value % 2 == 0) {
+    totalPrice.innerHTML = `$ ${(ammount.value / 2) * food.promo}`
+  } else {
+    if (ammount.value == 1) {
+      totalPrice.innerHTML = `$ ${ammount.value * food.precio}`
+    } else {
+      const promoPrice = ((ammount.value - 1) / 2) * food.promo
+      totalPrice.innerHTML = `$ ${promoPrice + food.precio}`
+    }
+  }
+}
+
+function getDateOfOrder(comida) {
+  const diaDePedido = comida.dia
+  const dayArr = [
+    "domingo",
+    "lunes",
+    "martes",
+    "miercoles",
+    "jueves",
+    "viernes",
+    "sabado",
+  ]
+  const diaDePedidoId = dayArr.indexOf(diaDePedido)
+  const now = new Date()
+  const day = now.getDay()
+  const date = now.getDate()
+  const diff = diaDePedidoId - day
+  const dateOfOrder = date + diff
+  return dateOfOrder
+}
+main()

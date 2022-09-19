@@ -1,0 +1,9 @@
+{
+  "name": "pedix_clone",
+  "version": "1.0.0",
+  "main": "scripts/main.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}

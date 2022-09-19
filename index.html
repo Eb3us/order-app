@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedix Clone</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="/scripts/script.js" type="module"></script>
+</head>
+<body>
+<nav id="navbar">
+    <div id="menu-btn">MENU</div>
+    <div id="cart-btn"><div id="cart-counter"></div><img id="cart-img" src="cart.png" alt=""></div>
+</nav>
+<div id="container">
+
+</div>
+
+</body>
+<template data-order-form-template>
+    <form id="order-form" action="results.html" method="GET">
+        <div style="display:flex;flex-direction: column;">
+            <label class="text-input-text" for="name">Nombre y apellido<span class="asterisk">*</span></label>
+            <input id ="name" class="text-input" type="text" name="name" placeholder="Ingrese su nombre y apellido aquí..." required>
+            <p class="input-error">Debe ingresar un nombre</p>
+        </div>
+            <div style="display:flex;flex-direction: column;">
+            <label class="text-input-text" for="tel">Numero de telefono<span class="asterisk">*</span></label>
+            <input id="tel" class="text-input" type="tel" name="tel" pattern="\d{5}\d+" placeholder="Se necesita un numero de contacto..." required>
+            <p class="input-error">Debe ingresar un numero de telefono</p>
+       </div>
+        <p class="text-input-text">Metodo de pago:</p>
+        <div id="payment-div" class="selector-div">
+            <div class="inner-selector-div">
+                <input id="efectivo" class="hidden-checkbox" type="radio" name="pago" value="efectivo" required>
+                <label class="h-cb-label" for="efectivo">Efectivo</label>
+                <input id="transferencia" class="hidden-checkbox" type="radio" name="pago" value="transferencia">
+                <label class="h-cb-label" for="transferencia">Transferencia</label>
+            </div>
+            <p class="input-error">Debe seleccionar un metodo de pago</p>
+        </div>
+        <p class="text-input-text">Forma de entrega:</p>
+        <div id="delivery-div" class="selector-div">
+            <div class="inner-selector-div">
+                <input id="buscar" class="hidden-checkbox" type="radio" name="delivery" value="buscar" required>
+                <label class="h-cb-label" for="buscar">Retiro en el local</label>
+                <input id="envio" class="hidden-checkbox" type="radio" name="delivery" value="envio">
+                <label class="h-cb-label" for="envio">Envío a domicilio</label>
+            </div>
+            <p class="input-error">Debe seleccionar una forma de entrega</p>
+        </div>
+        <button type="submit">Confirmar pedido</button>
+    </form>
+</template>
+</html>

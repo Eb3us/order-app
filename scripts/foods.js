@@ -1,0 +1,48 @@
+export const foods = [
+  {
+    "name": "Lomito Vegano",
+    "img": "/images/lomitovegano.jpg",
+    "sub-titulo-1": "Solo los Viernes!",
+    "desc": [
+      "Pan casero, mayonesa de aquafaba, lechuga, tomate, salsa criolla, bife de seitán, repollo saltado, queso de girasol y porcion de papas.",
+    ],
+    "precio": 600,
+    "promo": 1000,
+    "id": 1,
+    "dia": "viernes",
+  },
+  {
+    "name": "Burger Vegana",
+    "img": "/images/hamburguesa.jpg",
+    "sub-titulo-1": "Solo los Viernes!",
+    "desc": [
+      "Pan casero, mayonesa de aquafaba, lechuga, tomate, cebolla morada caramelizada, hamburguesa de garbanzos, huevo de tofu, pasta de zanahoria, y porción de papas.",
+    ],
+    "precio": 550,
+    "promo": 950,
+    "id": 2,
+    "dia": "viernes",
+  },
+  {
+    "name": "Sorrentinos",
+    "img": "/images/sorren.jpg",
+    "sub-titulo-1": "Solo los Sabados!",
+    "sub-titulo-2": "Variedades:",
+    "desc": ["Jamón y Queso", "Calabacín, Nuez y Queso"],
+    "precio": 550,
+    "promo": 950,
+    "id": 3,
+    "dia": "sabado",
+  },
+  {
+    "name": "Locro",
+    "img": "/images/locro.jpg",
+    "sub-titulo-1": "Proximo Locro:",
+    "sub-titulo-2": "9 de Julio",
+    "desc": [],
+    "precio": 850,
+    "promo": 1700,
+    "id": 4,
+    "dia": "9 de julio",
+  },
+]
