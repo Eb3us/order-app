@@ -47,3 +47,9 @@ function closeButtonRebuildCart(closeBtn, food) {
     createCartPage()
   })
 }
+
+function crearAlertaNoHayProductos() {
+  const box = document.createElement("div")
+  box.innerHTML = "<p>No ha selecciondo ningun producto</p>"
+}
+crearAlertaNoHayProductos()

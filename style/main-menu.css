@@ -1,0 +1,26 @@
+.menu-title {
+  color: #3a3;
+  font-weight: bold;
+  font-size: 2.5em;
+  text-shadow: -2px -2px 2px white, 2px 2px 2px white, 1px 1px 3px black;
+}
+
+.btn {
+  background-size: cover;
+  background-position: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80px;
+  margin: 1em 0;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.btnTitle {
+  font-size: 140%;
+  color: white;
+  font-weight: bold;
+  text-shadow: -1px -1px 1px black, 1px 1px 1px black;
+}

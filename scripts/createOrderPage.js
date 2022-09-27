@@ -40,14 +40,16 @@ export function createOrderPage(cart) {
 
   selectLabel(paymentCheckboxes, paymentLabels)
   selectLabel(deliveryCheckboxes, deliveryLabels)
+
   allInputs.forEach(input => {
     customValidity(input)
   })
-
+  totalFinal()
   function selectLabel(inputArray, labelArray) {
     inputArray.forEach(input => {
       input.addEventListener("change", () => {
         if (!input.checked) return
+
         labelArray.forEach(label => {
           if (label.htmlFor == input.id) {
             label.classList.add("selected")
@@ -55,6 +57,25 @@ export function createOrderPage(cart) {
             label.classList.remove("selected")
           }
         })
+        if (input.id == "envio") {
+          document.querySelector(".costo-envio").style.display = "block"
+          sessionStorage.setItem("envio", 100)
+          totalFinal()
+        } else if (input.id == "buscar") {
+          document.querySelector(".costo-envio").style.display = "none"
+          sessionStorage.removeItem("envio")
+          totalFinal()
+        }
+
+        if (input.id == "efectivo") {
+          totalFinal()
+          document.querySelector(".pago-justo").style.display = "block"
+        } else if (input.id == "transferencia") {
+          document.querySelector(".pago-justo").style.display = "none"
+          const money = document.querySelector("#pago-justo")
+          money.value = 0
+          money.min = 0
+        }
       })
     })
   }
@@ -74,6 +95,7 @@ export function createOrderPage(cart) {
       }
     })
   }
+
   const submitButton = form.querySelector("button")
   submitButton.addEventListener("click", () => {
     const errorMessages = form.querySelectorAll(".input-error")
@@ -81,4 +103,22 @@ export function createOrderPage(cart) {
       message.style.display = "none"
     })
   })
+}
+function totalFinal() {
+  const money = document.querySelector("#pago-justo")
+  const totalDiv = document.querySelector("#pj-total")
+  const envio = document.createElement("p")
+  const envioInt = sessionStorage.getItem("envio")
+    ? parseInt(sessionStorage.getItem("envio"))
+    : 0
+  const subTotal = document.createElement("p")
+  const subTotalInt = parseInt(sessionStorage.getItem("total"))
+  const totalFinal = document.createElement("p")
+  const totalFinalInt = envioInt + subTotalInt
+  totalDiv.innerHTML = ""
+  envio.innerText = `Envío: ${envioInt}`
+  subTotal.innerText = `Sub-Total: ${subTotalInt}`
+  totalFinal.innerText = `Total: ${totalFinalInt}`
+  totalDiv.append(subTotal, envio, totalFinal)
+  money.min = totalFinalInt
 }

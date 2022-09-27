@@ -1,0 +1,92 @@
+#order-form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+.text-input-text {
+  margin-top: 1em;
+  font-size: 80%;
+  font-weight: bold;
+}
+.asterisk {
+  color: red;
+  text-shadow: 0px 0px 1px black;
+}
+.hidden-checkbox {
+  display: none;
+}
+.selector-div {
+  display: flex;
+  flex-direction: column;
+}
+.inner-selector-div {
+  display: flex;
+}
+.h-cb-label {
+  width: 120px;
+  background-color: white;
+  margin-right: 1em;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid gray;
+  padding: 1em;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.selected {
+  background-color: lightblue;
+  color: darkblue;
+  border: 1px solid darkblue;
+}
+.input-error {
+  font-size: 70%;
+  font-weight: bold;
+  color: red;
+  margin: 0;
+  text-shadow: 0px 0px 1px black;
+  display: none;
+}
+.costo-envio {
+  display: none;
+}
+.pago-justo {
+  margin-top: 10px;
+  display: none;
+}
+.pago-justo input {
+  width: 30px;
+}
+.pago-justo input::-webkit-outer-spin-button,
+.pago-justo input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.pago-justo input[type="number"] {
+  -moz-appearance: textfield;
+}
+#order-form button {
+  margin-top: 20px;
+  background-color: white;
+  color: darkgreen;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 150%;
+  border: 1px solid green;
+  text-shadow: 1px 1px 2px lightgreen;
+  cursor: pointer;
+}
+#pj-total {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+#pj-total p {
+  margin: 0;
+}
