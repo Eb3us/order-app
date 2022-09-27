@@ -30,7 +30,7 @@
             <input id="tel" class="text-input" type="tel" name="tel" pattern="\d{5}\d+" placeholder="Se necesita un numero de contacto..." required>
             <p class="input-error">Debe ingresar un numero de telefono</p>
        </div>
-       <p class="text-input-text">Forma de entrega:</p>
+       <p class="text-input-text">Forma de entrega<span class="asterisk">*</span>:</p>
         <div id="delivery-div" class="selector-div">
             <div class="inner-selector-div">
                 <input id="buscar" class="hidden-checkbox" type="radio" name="delivery" value="buscar" required>
@@ -41,22 +41,26 @@
             <p class="input-error">Debe seleccionar una forma de entrega</p>
             <p class="costo-envio"><span style="font-weight:bold">El costo del envío es de $100</span><br><span style="font-size:smaller">(puede variar dependiendo de la distancia)</span></p>
         </div>
-        <p class="text-input-text">Metodo de pago:</p>
+        <p class="text-input-text">Metodo de pago<span class="asterisk">*</span>:</p>
         <div id="payment-div" class="selector-div">
             <div class="inner-selector-div">
                 <input id="efectivo" class="hidden-checkbox" type="radio" name="pago" value="efectivo" required>
                 <label class="h-cb-label" for="efectivo">Efectivo</label>
                 <input id="transferencia" class="hidden-checkbox" type="radio" name="pago" value="transferencia">
                 <label class="h-cb-label" for="transferencia">Transferencia</label>
+                
             </div>
+            <p class="input-error">Debe seleccionar un metodo de pago</p>
             <div class="pago-justo">
                 <div class="cantidad">
                     <label for="pago-justo">Con cuanto va a abonar:</label>
                     <input type="number" id="pago-justo" name="cantidad-efectivo" id="pago-justo" required> 
                 </div>
+                <p class="input-error"></p>
             </div>
+            
             <div id="pj-total"></div>
-            <p class="input-error">Debe seleccionar un metodo de pago</p>
+            
             
         </div>
         

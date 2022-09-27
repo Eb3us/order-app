@@ -45,6 +45,8 @@ export function createOrderPage(cart) {
     customValidity(input)
   })
   totalFinal()
+
+  // funccion que se ocupa de la selección de los botones y los eventos que disparan
   function selectLabel(inputArray, labelArray) {
     inputArray.forEach(input => {
       input.addEventListener("change", () => {
@@ -79,23 +81,35 @@ export function createOrderPage(cart) {
       })
     })
   }
+  //Funcción que se ocupa de los mensajes de error
+  //en caso de no llenar algun campo del formulario
+
   function customValidity(input) {
     input.addEventListener("input", () => {
       input.setCustomValidity("")
     })
 
     input.addEventListener("invalid", () => {
+      const errorAlert = input.parentNode.querySelector(".input-error")
+        ? input.parentNode.querySelector(".input-error")
+        : input.parentNode.parentNode.querySelector(".input-error")
+
       if (input.type === "tel" && input.value !== "") {
         input.setCustomValidity("Ingrese un numero de telefono valido")
-      } else {
-        const errorAlert = input.parentNode.querySelector(".input-error")
-          ? input.parentNode.querySelector(".input-error")
-          : input.parentNode.parentNode.querySelector(".input-error")
+      } else if (input.id === "pago-justo") {
+        errorAlert.innerText = parseInt(input.value)
+          ? "El pago debe ser igual o mayor al total del pedido"
+          : "Debe ingresar el monto con el que va a abonar"
         errorAlert.style.display = "block"
+      } else {
+        if (errorAlert.style.display == "none") {
+          errorAlert.style.display = "block"
+        }
       }
     })
   }
 
+  //crear el boton de submit y escuc
   const submitButton = form.querySelector("button")
   submitButton.addEventListener("click", () => {
     const errorMessages = form.querySelectorAll(".input-error")
@@ -104,6 +118,8 @@ export function createOrderPage(cart) {
     })
   })
 }
+
+//funcción que calcula el total y crea los elementos para mostrarlo
 function totalFinal() {
   const money = document.querySelector("#pago-justo")
   const totalDiv = document.querySelector("#pj-total")

@@ -31,7 +31,7 @@ export function createCartPage() {
   orderBtn.innerText = "Confirmar pedido"
   orderBtn.addEventListener("click", () => {
     if (sessionStorage.getItem("totalAmmount") < 1) {
-      console.log("no items")
+      crearAlertaNoHayProductos()
     } else {
       createOrderPage(cart)
     }
@@ -51,5 +51,13 @@ function closeButtonRebuildCart(closeBtn, food) {
 function crearAlertaNoHayProductos() {
   const box = document.createElement("div")
   box.innerHTML = "<p>No ha selecciondo ningun producto</p>"
+  box.classList.add("item-add-alert")
+  box.classList.add("sin-productos")
+  container.appendChild(box)
+  box.addEventListener("click", () => {
+    box.style.display = "none"
+  })
+  setTimeout(() => {
+    box.style.display = "none"
+  }, 5000)
 }
-crearAlertaNoHayProductos()
